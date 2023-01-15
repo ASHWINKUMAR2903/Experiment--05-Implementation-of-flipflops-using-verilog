@@ -101,40 +101,89 @@ From the above characteristic table, we can directly write the next state equati
 Q(t+1)=T′Q(t)+TQ(t)′
 ⇒Q(t+1)=T⊕Q(t)
 
-### Procedure
-/* write all the steps invloved */
+### Procedure:
 
+1.Using nand gates and wires construct sr flip flop.
+
+2.Repeat same steps to construct JK,D,T flipflops.
+
+3.Find Rtl logic and timing diagram for all flipflops.
+
+4.End the program.
 
 
 ### PROGRAM 
-/*
-Program for flipflops  and verify its truth table in quartus using Verilog programming.
-Developed by: 
-RegisterNumber:  
-*/
+### Program for flipflops  and verify its truth table in quartus using Verilog programming.
+```
+Developed by: A.Ashwin Kumar
+RegisterNumber:  22001702
 
+1. SR flpiflop:
+module srflipflop(s,r,clk,q,qbar);
+input s,r,clk;
+output q,qbar;
+wire x,y;
+nand(x,s,clk);
+nand(y,r,clk);
+nand(q,x,qbar);
+nand(qbar,y,q);
+endmodule
 
+2. D flipflop:
+module dflipflop(D,clock,Q,Qbar);
+input D,clock;
+output Q,Qbar;
+assign Dbar = ~D;
+wire X,Y;
+nand(X,D,clock);
+nand(Y,Dbar,clock);
+nand(Q,X,Qbar);
+nand(Qbar,Y,Q);
+endmodule
 
+3. JK flipflop:
+module jkflipflop(j,k,clk,q,qbar);
+input j,k,clk;
+output q,qbar;
+wire x,y;
+nand(x,j,clk,qbar);
+nand(y,k,clk,q);
+nand(q,x,qbar);
+nand(qbar,y,q);
+endmodule
 
+4. T flipflop:
+module tflipflop(T,clock,Q,Qbar);
+input T,clock;
+output Q,Qbar;
+wire A,B;
+nand(A,T,clock,Qbar);
+nand(B,T,clock,Q);
+nand(Q,A,Qbar);
+nand(Qbar,B,Q);
+endmodule
 
-
-### RTL LOGIC FOR FLIPFLOPS 
-
-
-
-
-
-
-
-
-
-### TIMING DIGRAMS FOR FLIP FLOPS 
-
-
-
-
-
-
-
-
+```
+# OUTPUT:
+## SR FLIP FLOP:
+### RTL LOGIC:
+![output](a.png)
+### TIMING DIGRAMS FOR FLIP FLOPS :
+![output](as.png)
+## D FLIP FLOP:
+### RTL LOGIC:
+![output](b.png)
+### TIMING DIGRAMS FOR FLIP FLOPS :
+![output](df.png)
+## JK FLIP FLOP:
+### RTL LOGIC:
+![output](c.png)
+### TIMING DIGRAMS FOR FLIP FLOPS :
+![output](gh.png)
+## T FLIP FLOP:
+### RTL LOGIC:
+![output](d.png)
+### TIMING DIGRAMS FOR FLIP FLOPS :
+![output](jk.png)
 ### RESULTS 
+Thus, implementation of SR, JK, D and T flipflops using nand gates are done sucessfully.
